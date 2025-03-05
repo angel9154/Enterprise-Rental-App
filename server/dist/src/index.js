@@ -9,6 +9,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
+// import tenantRoutes from './routes/tenantRoutes';
 /*routes*/
 /*configurations*/
 dotenv_1.default.config();
@@ -23,8 +24,9 @@ app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
     res.send('this is home route');
 });
+// app.use("/tenants", authMiddleware(["tenant"]), tenantRoutes);
 /* server */
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
