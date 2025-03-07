@@ -18,8 +18,17 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/types/prismaClient": ["./src/types/prismaClient/index.d.ts"],
+    "@prisma/client": ["./src/types/prismaClient/index.d.ts"],
+    "@/state/api": ["./src/state/api.ts"],
+    "@/components/*": ["./src/components/*"],
+    "@/lib/*": ["./src/lib/*"],
+     "@/hooks/*": ["./src/hooks/*"],
+     "@/state": ["./src/state/index.ts"],
+      "@/state/*": ["./src/state/*"],
+    "@/lib/utils": ["./src/lib/utils.ts"]
     },
+    
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "types": [],
     "target": "ES2017"

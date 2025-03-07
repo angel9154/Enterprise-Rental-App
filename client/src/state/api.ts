@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Tenant, Manager } from "@/types/prismaTypes";
+import { Tenant, Manager } from "@/types/prismaClient";
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { createNewUserInDatabase } from "@/lib/utils";
 
@@ -23,12 +23,12 @@ export const api = createApi({
         try {
           const session = await fetchAuthSession()
           const { idToken } = session.tokens ?? {}
-          const user = await getCurrentUser() as string;
+          const user = await getCurrentUser(); 
 
-          const userRole = user.includes("manager") ? "manager" : "tenant";
+          const userRole = idToken?.payload["custom:role"] as string;
           const endpoint = userRole === "manager"
-          ? `/managers/${user.userId}`
-          : `/tentants/${user.userId}`;
+          ? `/managers/${user.userId}`  // Use correct user ID property
+           : `/tenants/${user.userId}`;  // Fix typo "tentants" → "tenants
 
           let userDetailsResponse = await fetchWithBQ(endpoint);
 
@@ -37,8 +37,9 @@ export const api = createApi({
               userDetailsResponse = await createNewUserInDatabase(
                 user,
                 userRole,
+                idToken,
                 fetchWithBQ,
-                idToken
+                
               )
           }
 

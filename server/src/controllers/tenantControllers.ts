@@ -34,11 +34,9 @@ export const createTenant = async (req: Request, res: Response): Promise<void> =
             phoneNumber
         }
     })
-    if (tenant) {
-        res.json(tenant)
-    } else {
-       res.status(404).json({ message: "Tenant not found" })
-    }
+   
+    res.status(201).json(tenant);
+ 
   } catch (error: any) {
     res.status(500).json({ message: `Error retrieving tenant: ${error.message}` });
   }

@@ -66,7 +66,7 @@ const components = {
         isRequired
          >
           <Radio value="tenant">Tenant</Radio>
-          <Radio value="landlord">Manager</Radio>
+          <Radio value="manager">Manager</Radio>
 
          </RadioGroupField>
        </>
