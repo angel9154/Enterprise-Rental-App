@@ -55,7 +55,7 @@ return (
                {isDashboardPage && authUser && (
                  <Button
                    variant="secondary"
-                   className="md:-4 bg-primary-50 text-primary-700 hover:bg-secondary-500 hover:text-primary-50"
+                   className="ml-4 md:ml-6 bg-primary-50 text-primary-700 hover:bg-secondary-500 hover:text-primary-50"
                    onClick={() =>
                      router.push(
                        authUser.userRole?.toLowerCase() === "manager"
