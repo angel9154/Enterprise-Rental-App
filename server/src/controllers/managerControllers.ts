@@ -4,13 +4,18 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+
 export const getManager = async (req: Request, res: Response): Promise<void> => {
     try{
-    const { cognitoId } = req.params
-    const manager = await prisma.tenant.findUnique({
+    const { cognitoId } = req.params;
+    console.log('Looking for manager with cognitoId:', cognitoId);
+    const manager = await prisma.manager.findUnique({
         where: { cognitoId },
         
     })
+
+    console.log('Manager query result:', manager); // Will show null if not found
+    
     if (manager) {
         res.json(manager)
     } else {
@@ -22,7 +27,7 @@ export const getManager = async (req: Request, res: Response): Promise<void> => 
 }
 
 export const createManager = async (req: Request, res: Response): Promise<void> => {
-    try{
+    try {
     const { cognitoId, name, email, phoneNumber } = req.body
     const manager = await prisma.manager.create({
         data: {
@@ -30,8 +35,8 @@ export const createManager = async (req: Request, res: Response): Promise<void> 
             name,
             email,
             phoneNumber
-        }
-    })
+        },
+    });
 
     res.status(201).json(manager);
 
@@ -39,4 +44,24 @@ export const createManager = async (req: Request, res: Response): Promise<void> 
     res.status(500).json({ message: `Error retrieving manager: ${error.message}` });
   }
 }
+  export const updateManager = async (req: Request, res: Response): Promise<void> => {
+             try{
+               const { cognitoId } = req.params;
+             const { name, email, phoneNumber } = req.body
+             const updateManager = await prisma.manager.update({
+                    where: { cognitoId },
+                     data: {
+                  
+                     name,
+                     email,
+                     phoneNumber
+                 }
+             })
+            
+             res.json(updateManager);
            
+           } catch (error: any) {
+             res.status(500).json({ message: `Error updating manager: ${error.message}` });
+           }
+           }
+                      

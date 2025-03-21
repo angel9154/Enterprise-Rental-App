@@ -27,6 +27,7 @@ app.get('/',  (req, res) => {
 });
 app.use("/tenants", authMiddleware(["tenant"]), tenantRoutes);
 app.use("/managers", authMiddleware(["manager"]), managerRoutes);
+
 /* server */
 const PORT = process.env.PORT || 3002;
 
@@ -34,3 +35,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 }
 );
+

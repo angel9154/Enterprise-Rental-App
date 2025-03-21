@@ -1,5 +1,5 @@
-import jwt,{ JwtPayload } from "jsonwebtoken";
-import  { Request, Response, NextFunction } from "express";
+import jwt, { JwtPayload } from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
 
 interface DecodedToken extends JwtPayload {
   sub: string;
@@ -27,13 +27,21 @@ export const authMiddleware = (allowedRoles: string[]) => {
         }
         try {
             const decoded = jwt.decode(token) as DecodedToken;
+            console.log("Decoded token:", decoded); // Add this to see what's in the token
+            
             const userRole = decoded["custom:role"] || "";
+            console.log("Extracted role:", userRole); // Add this to debug role extraction
+            
             req.user = {
                 id: decoded.sub,
                 role: userRole
             }
+            
+            // Log the user object that's being attached to request
+            console.log("User object:", req.user);
     
-            const hasAccess = allowedRoles.includes(userRole.toLowerCase());
+            // Don't lowercase the role value from the token
+            const hasAccess = allowedRoles.includes(userRole);
             if (!hasAccess) {
                 res.status(403).json({ message: "Access Denied" });
                 return;
@@ -44,7 +52,5 @@ export const authMiddleware = (allowedRoles: string[]) => {
             res.status(400).json({ message: "Invalid Token" });
             return;
         }
-
     } 
-   
 }
