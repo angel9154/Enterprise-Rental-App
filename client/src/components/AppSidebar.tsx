@@ -21,12 +21,12 @@ userType === "manager"
 
 ]
 :[
-    { icon: Heart, label: "Favorites", href: "/tentants/favorites"},
-    { icon: FileText, label: "Applications", href: "/tentants/applications"},
-    { icon: Home, label: "Residences", href: "/tentants/residences"},
+    { icon: Heart, label: "Favorites", href: "/tenants/favorites"},
+    { icon: FileText, label: "Applications", href: "/tenants/applications"},
+    { icon: Home, label: "Residences", href: "/tenants/residences"},
 
 
-    { icon: Settings, label: "Settings", href: "/tentants/settings"},
+    { icon: Settings, label: "Settings", href: "/tenants/settings"},
 
 ]
 

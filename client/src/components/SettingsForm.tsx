@@ -43,11 +43,11 @@ const handleSubmit = async (data: SettingsFormData) => {
         <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className="-space-y-6"
+              className="space-y-6"
            >
               <CustomFormField name="name" label="Name" disabled={!editMode}/>
               <CustomFormField name="email" label="Email" type="email" disabled={!editMode} />
-              <CustomFormField name="phoneNumber" label="Email"  disabled={!editMode} />
+              <CustomFormField name="phoneNumber" label="Phone Number"  disabled={!editMode} />
               <div className='pt-4 flex justify-between'>
                 <Button
                     type="button"
