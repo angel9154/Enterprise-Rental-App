@@ -7,7 +7,7 @@ import morgan from 'morgan';
 import { authMiddleware } from './middleware/authMiddleware';
 import tenantRoutes from './routes/tenantRoutes';
 import managerRoutes from './routes/managerRoutes';
-
+import propertyRoutes from './routes/propertyRoutes';
 /*routes*/
 
 /*configurations*/
