@@ -1,6 +1,7 @@
 import express from 'express';
 import { getProperties, createProperty, getProperty } from '../controllers/propertyControllers';
 import { authMiddleware } from '../middleware/authMiddleware';
+import multer from 'multer';
 
 
 const storage = multer.memoryStorage();
